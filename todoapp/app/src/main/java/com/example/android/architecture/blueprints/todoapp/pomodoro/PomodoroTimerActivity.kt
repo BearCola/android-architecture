@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.statistics
+package com.example.android.architecture.blueprints.todoapp.pomodoro
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,10 +28,7 @@ import com.example.android.architecture.blueprints.todoapp.util.obtainViewModel
 import com.example.android.architecture.blueprints.todoapp.util.replaceFragmentInActivity
 import com.example.android.architecture.blueprints.todoapp.util.setupActionBar
 
-/**
- * Show statistics for tasks.
- */
-class StatisticsActivity : AppCompatActivity() {
+class PomodoroTimerActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -62,7 +59,7 @@ class StatisticsActivity : AppCompatActivity() {
 
     private fun findOrCreateViewFragment() =
             supportFragmentManager.findFragmentById(R.id.contentFrame) ?:
-                    StatisticsFragment.newInstance().also {
+                    PomodoroTimerFragment.newInstance().also {
                         replaceFragmentInActivity(it, R.id.contentFrame)
                     }
 
@@ -77,7 +74,7 @@ class StatisticsActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.list_navigation_menu_item -> {
-                    val intent = Intent(this@StatisticsActivity, TasksActivity::class.java)
+                    val intent = Intent(this@PomodoroTimerActivity, TasksActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.statistics_navigation_menu_item -> {
@@ -91,5 +88,5 @@ class StatisticsActivity : AppCompatActivity() {
         }
     }
 
-    fun obtainViewModel(): StatisticsViewModel = obtainViewModel(StatisticsViewModel::class.java)
+    fun obtainViewModel(): PomodoroViewModel = obtainViewModel(PomodoroViewModel::class.java)
 }

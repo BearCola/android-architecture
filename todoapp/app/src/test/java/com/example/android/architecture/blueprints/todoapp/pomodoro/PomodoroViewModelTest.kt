@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.statistics
+package com.example.android.architecture.blueprints.todoapp.pomodoro
 
 
 import android.app.Application
@@ -37,16 +37,16 @@ import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 /**
- * Unit tests for the implementation of [StatisticsViewModel]
+ * Unit tests for the implementation of [PomodoroViewModel]
  */
-class StatisticsViewModelTest {
+class PomodoroViewModelTest {
 
     // Executes each task synchronously using Architecture Components.
     @get:Rule var instantExecutorRule = InstantTaskExecutorRule()
     @Mock private lateinit var tasksRepository: TasksRepository
     @Captor private lateinit var loadTasksCallbackCaptor:
             ArgumentCaptor<TasksDataSource.LoadTasksCallback>
-    private lateinit var statisticsViewModel: StatisticsViewModel
+    private lateinit var pomodoroViewModel: PomodoroViewModel
     private lateinit var tasks: MutableList<Task>
 
     @Before fun setupStatisticsViewModel() {
@@ -55,7 +55,7 @@ class StatisticsViewModelTest {
         MockitoAnnotations.initMocks(this)
 
         // Get a reference to the class under test
-        statisticsViewModel = StatisticsViewModel(mock(Application::class.java), tasksRepository)
+        pomodoroViewModel = PomodoroViewModel(mock(Application::class.java), tasksRepository)
 
         // We initialise the tasks to 3, with one active and two completed
         val task1 = Task("Title1", "Description1")
@@ -69,43 +69,43 @@ class StatisticsViewModelTest {
     }
 
     @Test fun loadEmptyTasksFromRepository_EmptyResults() {
-        // Given an initialized StatisticsViewModel with no tasks
+        // Given an initialized PomodoroViewModel with no tasks
         tasks.clear()
 
         // When loading of Tasks is requested
-        statisticsViewModel.loadStatistics()
+        pomodoroViewModel.loadStatistics()
 
         // Callback is captured and invoked with stubbed tasks
         verify<TasksRepository>(tasksRepository).getTasks(capture(loadTasksCallbackCaptor))
         loadTasksCallbackCaptor.value.onTasksLoaded(tasks)
 
         // Then the results are empty
-        assertThat(statisticsViewModel.empty.get(), `is`(true))
+        assertThat(pomodoroViewModel.empty.get(), `is`(true))
     }
 
     @Test fun loadNonEmptyTasksFromRepository_NonEmptyResults() {
         // When loading of Tasks is requested
-        statisticsViewModel.loadStatistics()
+        pomodoroViewModel.loadStatistics()
 
         // Callback is captured and invoked with stubbed tasks
         verify<TasksRepository>(tasksRepository).getTasks(capture(loadTasksCallbackCaptor))
         loadTasksCallbackCaptor.value.onTasksLoaded(tasks)
 
         // Then the results are empty
-        assertThat(statisticsViewModel.empty.get(), `is`(false))
+        assertThat(pomodoroViewModel.empty.get(), `is`(false))
     }
 
 
     @Test fun loadStatisticsWhenTasksAreUnavailable_CallErrorToDisplay() {
         // When statistics are loaded
-        statisticsViewModel.loadStatistics()
+        pomodoroViewModel.loadStatistics()
 
         // And tasks data isn't available
         verify<TasksRepository>(tasksRepository).getTasks(capture(loadTasksCallbackCaptor))
         loadTasksCallbackCaptor.value.onDataNotAvailable()
 
         // Then an error message is shown
-        assertEquals(statisticsViewModel.empty.get(), true)
-        assertEquals(statisticsViewModel.error.get(), true)
+        assertEquals(pomodoroViewModel.empty.get(), true)
+        assertEquals(pomodoroViewModel.error.get(), true)
     }
 }

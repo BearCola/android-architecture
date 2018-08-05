@@ -23,7 +23,7 @@ import android.support.annotation.VisibleForTesting
 
 import com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskViewModel
 import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository
-import com.example.android.architecture.blueprints.todoapp.statistics.StatisticsViewModel
+import com.example.android.architecture.blueprints.todoapp.pomodoro.PomodoroViewModel
 import com.example.android.architecture.blueprints.todoapp.taskdetail.TaskDetailViewModel
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksViewModel
 
@@ -42,8 +42,8 @@ class ViewModelFactory private constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>) =
             with(modelClass) {
                 when {
-                    isAssignableFrom(StatisticsViewModel::class.java) ->
-                        StatisticsViewModel(application, tasksRepository)
+                    isAssignableFrom(PomodoroViewModel::class.java) ->
+                        PomodoroViewModel(application, tasksRepository)
                     isAssignableFrom(TaskDetailViewModel::class.java) ->
                         TaskDetailViewModel(application, tasksRepository)
                     isAssignableFrom(AddEditTaskViewModel::class.java) ->

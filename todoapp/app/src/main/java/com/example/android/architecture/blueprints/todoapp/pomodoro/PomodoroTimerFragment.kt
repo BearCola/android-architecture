@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.statistics
+package com.example.android.architecture.blueprints.todoapp.pomodoro
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -28,11 +28,11 @@ import com.example.android.architecture.blueprints.todoapp.databinding.Statistic
 /**
  * Main UI for the statistics screen.
  */
-class StatisticsFragment : Fragment() {
+class PomodoroTimerFragment : Fragment() {
 
     private lateinit var viewDataBinding: StatisticsFragBinding
 
-    private lateinit var statisticsViewModel: StatisticsViewModel
+    private lateinit var pomodoroViewModel: PomodoroViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
@@ -43,16 +43,16 @@ class StatisticsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        statisticsViewModel = (activity as StatisticsActivity).obtainViewModel()
-        viewDataBinding.stats = statisticsViewModel
+        pomodoroViewModel = (activity as PomodoroTimerActivity).obtainViewModel()
+        viewDataBinding.stats = pomodoroViewModel
     }
 
     override fun onResume() {
         super.onResume()
-        statisticsViewModel.start()
+        pomodoroViewModel.start()
     }
 
     companion object {
-        fun newInstance() = StatisticsFragment()
+        fun newInstance() = PomodoroTimerFragment()
     }
 }

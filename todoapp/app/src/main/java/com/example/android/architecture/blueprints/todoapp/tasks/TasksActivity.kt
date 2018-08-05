@@ -25,7 +25,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskActivity
-import com.example.android.architecture.blueprints.todoapp.statistics.StatisticsActivity
+import com.example.android.architecture.blueprints.todoapp.pomodoro.PomodoroTimerActivity
 import com.example.android.architecture.blueprints.todoapp.taskdetail.TaskDetailActivity
 import com.example.android.architecture.blueprints.todoapp.util.obtainViewModel
 import com.example.android.architecture.blueprints.todoapp.util.replaceFragmentInActivity
@@ -95,7 +95,7 @@ class TasksActivity : AppCompatActivity(), TaskItemNavigator, TasksNavigator {
                     // Do nothing, we're already on that screen
                 }
                 R.id.statistics_navigation_menu_item -> {
-                    val intent = Intent(this@TasksActivity, StatisticsActivity::class.java).apply {
+                    val intent = Intent(this@TasksActivity, PomodoroTimerActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     }
                     startActivity(intent)

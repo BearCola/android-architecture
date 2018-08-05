@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.statistics
+package com.example.android.architecture.blueprints.todoapp.pomodoro
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
@@ -34,7 +34,7 @@ import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepo
  * whereas the [Bindable] getters allow us to add some logic to it. This is
  * preferable to having logic in the XML layout.
  */
-class StatisticsViewModel(
+class PomodoroViewModel(
         private val context: Application,
         private val tasksRepository: TasksRepository
 ) : AndroidViewModel(context) {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.statistics
+package com.example.android.architecture.blueprints.todoapp.pomodoro
 
 import android.content.Intent
 import android.support.test.InstrumentationRegistry
@@ -52,7 +52,7 @@ import org.junit.runner.RunWith
      * blocks of Junit tests.
      */
     @get:Rule
-    var statisticsActivityTestRule = ActivityTestRule(StatisticsActivity::class.java, true, false)
+    var statisticsActivityTestRule = ActivityTestRule(PomodoroTimerActivity::class.java, true, false)
 
     /**
      * Setup your test fixture with a fake task id. The [TaskDetailActivity] is started with

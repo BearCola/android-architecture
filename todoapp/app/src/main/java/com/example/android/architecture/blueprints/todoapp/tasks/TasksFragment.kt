@@ -89,7 +89,8 @@ class TasksFragment : Fragment() {
     }
 
     private fun showFilteringPopUpMenu() {
-        PopupMenu(context, activity.findViewById<View>(R.id.menu_filter)).run {
+
+        PopupMenu(this.context!!, activity!!.findViewById<View>(R.id.menu_filter)).run {
             menuInflater.inflate(R.menu.filter_tasks, menu)
 
             setOnMenuItemClickListener {
@@ -109,7 +110,7 @@ class TasksFragment : Fragment() {
     }
 
     private fun setupFab() {
-        activity.findViewById<FloatingActionButton>(R.id.fab_add_task).run {
+        activity!!.findViewById<FloatingActionButton>(R.id.fab_add_task).run {
             setImageResource(R.drawable.ic_add)
             setOnClickListener {
                 viewDataBinding.viewmodel?.addNewTask()
@@ -130,9 +131,9 @@ class TasksFragment : Fragment() {
     private fun setupRefreshLayout() {
         viewDataBinding.refreshLayout.run {
             setColorSchemeColors(
-                    ContextCompat.getColor(activity, R.color.colorPrimary),
-                    ContextCompat.getColor(activity, R.color.colorAccent),
-                    ContextCompat.getColor(activity, R.color.colorPrimaryDark)
+                    ContextCompat.getColor(activity!!, R.color.colorPrimary),
+                    ContextCompat.getColor(activity!!, R.color.colorAccent),
+                    ContextCompat.getColor(activity!!, R.color.colorPrimaryDark)
             )
             // Set the scrolling view in the custom SwipeRefreshLayout.
             scrollUpChild = viewDataBinding.tasksList

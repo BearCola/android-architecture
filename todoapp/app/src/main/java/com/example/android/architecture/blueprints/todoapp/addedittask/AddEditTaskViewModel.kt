@@ -32,7 +32,7 @@ import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepo
  *
  * This ViewModel only exposes [ObservableField]s, so it doesn't need to extend
  * [android.databinding.BaseObservable] and updates are notified automatically. See
- * [com.example.android.architecture.blueprints.todoapp.statistics.StatisticsViewModel] for
+ * [com.example.android.architecture.blueprints.todoapp.pomodoro.PomodoroViewModel] for
  * how to deal with more complex scenarios.
  */
 class AddEditTaskViewModel(
@@ -84,7 +84,7 @@ class AddEditTaskViewModel(
 
     // Called when clicking on fab.
     fun saveTask() {
-        val task = Task(title.get(), description.get())
+        val task = Task(title.get()!!, description.get()!!)
         if (task.isEmpty) {
             showSnackbarMessage(R.string.empty_task_message)
             return
@@ -93,7 +93,7 @@ class AddEditTaskViewModel(
             createTask(task)
         } else {
             taskId?.let {
-                updateTask(Task(title.get(), description.get(), it)
+                updateTask(Task(title.get()!!, description.get()!!, it)
                         .apply { isCompleted = taskCompleted })
             }
         }
